@@ -25,7 +25,7 @@ public class main {
 
             String line = "";
 
-            br = new BufferedReader(new FileReader("music_file.csv"));
+            br = new BufferedReader(new FileReader("./data/music_file.csv"));
 
             while ((line = br.readLine()) != null) {
 
