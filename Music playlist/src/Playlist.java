@@ -1,24 +1,5 @@
 public class Playlist {
 
-  private static class Song {
-
-    private String track;
-    private Song next;
-    public Song(String track) {
-      this.track = track;
-      this.next = null;
-    }
-
-    public Song(String track, Song next) {
-      this.track = track;
-      this.next = next;
-    }
-
-    public void setNext(Song next) {
-      this.next = next;
-    }
-  }
-
   private Song first, last;
   private int size;
 
@@ -28,29 +9,43 @@ public class Playlist {
 		this.size = 0;
   }
 
+  public int getSize() {
+    return this.size;
+  }
+
+  public Song getFirst() {
+    return this.first;
+  }
+
+  //addFront()
   public void addSong(String s) {
     if(this.size == 0) {
       this.first = new Song(s);
       this.last = first;
       this.size++;
     } else {
-      this.last.setNext(new Song(s));
-      this.last = this.last.next;
+      Song newNode = new Song(s);
+      newNode.setNext(this.first);
+      this.last = this.first;
+
+      this.first = newNode;
       this.size++;
     }
   }
 
-  public String listenToSong() {
+  //removeFront()
+  public Song listenToSong() {
     if (this.size == 0) {
       System.out.println("Empty playlist");
       return null;
     }
 
-    String track = this.first.track;
-    this.first = this.first.next;
+    Song current = this.first;
+    this.first = this.first.getNext();
+
     this.size--;
 
-    return track;
+    return current;
   }
 
   public String toString() {
@@ -62,11 +57,11 @@ public class Playlist {
 
 		Song current = this.first;
 
-		while(current.next != null) {
-			sb.append(String.format("%s --> ", current.track));
-			current = current.next;
+		while(current.getNext() != null) {
+			sb.append(String.format("%s --> ", current.getTrack()));
+			current = current.getNext();
 		}
-		sb.append(String.format("%s --> END]", current.track));
+		sb.append(String.format("%s --> END]", current.getTrack()));
 
 		return sb.toString();
 	}
