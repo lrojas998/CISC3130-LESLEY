@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class main {
   public static void main(String [] args) {
 
-    String[] fileNames = {"./data/week1.csv","./data/week2.csv"};
+    String[] fileNames = {"../data/week1.csv","../data/week2.csv"};
 
     ArrayList<MyQueue> weeklySongs = new ArrayList<>();
 
@@ -28,6 +28,7 @@ public class main {
     }
 
 
+
     //Creates new Queue with combination of other 2
     System.out.println("\n\n\t\tMERGED QUEUE " + "\t\t\n\n");
     weeklySongs.add(new MyQueue());
@@ -39,6 +40,8 @@ public class main {
     //PLAYLIST
 
     Playlist playlist1 = new Playlist();
+    SongHistoryList historyList1 = new SongHistoryList();
+
     playlist1.addSong("song 1");
     playlist1.addSong("song 2");
     playlist1.addSong("song 3");
@@ -46,8 +49,21 @@ public class main {
     System.out.println(playlist1);
 
     for(int i = 0; i < 3; i++) {
-      System.out.print("\nListening to: " + playlist1.listenToSong() + "\n");
-      System.out.println(playlist1);
+
+             System.out.println("\nListening to: " + playlist1.getFirst() + "");
+
+             historyList1.addSong(playlist1.listenToSong());
+
+             System.out.println("Last Song Listened: " +historyList1.getFirst());
     }
+
+    System.out.println("\n");
+    System.out.println(historyList1);
+
+
+
+
+
+
   }
 }
