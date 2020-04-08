@@ -135,19 +135,4 @@ public class main {
 
     return year;
   }
-
-  public static void insertData(HashMap<String, List<String>> map, String title, String genre) {
-
-    String[] genreData = null;
-    genreData = genre.split("\\|");
-
-    for(int i = 0; i < genreData.length; i++) {
-      if(!map.containsKey(genreData[i])) {
-        map.put(genreData[i], new ArrayList<String>());
-        map.get(genreData[i]).add(title);
-      } else {
-        map.get(genreData[i]).add(title);
-      }
-    }
-  }
 }
